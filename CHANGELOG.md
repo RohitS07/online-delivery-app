@@ -10,4 +10,8 @@ Newest first. See [RULE-0016](../harness/rules/RULE-0016-changelog-format.md).
 - `.env.example`
 
 ### Changed
-- `.env` is ignored and no longer meant to be committed
+- `.env` is no longer tracked; it may never hold a secret, since `VITE_` values ship to the browser
+- The page title is "Online Delivery", and `README.md` describes this app instead of the Vite template
+
+### Removed
+- Unused template files: `src/App.css`, `src/assets/`, `public/icons.svg`
