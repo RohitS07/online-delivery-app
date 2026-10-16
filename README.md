@@ -1,16 +1,38 @@
-# React + Vite
+# Online Delivery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mobile-first React web app for the Online Delivery platform. It talks to the Online Delivery
+API over REST, at `/api/v1/...`.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React and Vite
+- Tailwind CSS
+- React Router
+- Axios
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Local Development
 
-## React Compiler
+This repository sits inside the `online-delivery` workspace, which holds the harness and the
+specs. From the workspace root, `make install` and `make run-app` do the steps below.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Configure the API address:
+   ```bash
+   cp .env.example .env
+   ```
+   Every `VITE_` variable is built into the JavaScript the browser downloads. Never put a
+   token, key or other secret here; secrets belong to the API.
+2. Install and start:
+   ```bash
+   npm ci
+   npm run dev     # http://localhost:5173
+   ```
 
-## Expanding the ESLint configuration
+The API must be running at the address in `VITE_API_URL` (locally `http://localhost:5154`).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Scripts
+
+| Script | Does |
+|---|---|
+| `npm run dev` | Development server on port 5173 |
+| `npm run build` | Production bundle in `dist/` |
+| `npm run lint` | ESLint |
+| `npm run format` / `format:check` | Prettier, write or check |

@@ -1,4 +1,4 @@
-import ApiStatus from "./components/ApiStatus";
+import ApiStatus from './components/ApiStatus'
 
 export default function App() {
   return (
@@ -6,5 +6,5 @@ export default function App() {
       <h1 className="p-4 text-xl font-bold">Online Delivery</h1>
       <ApiStatus />
     </main>
-  );
+  )
 }

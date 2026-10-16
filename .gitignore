@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local environment: never committed. Keys are listed in .env.example.
+.env
+.env.*
+!.env.example
