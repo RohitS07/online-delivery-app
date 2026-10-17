@@ -1,7 +1,7 @@
 import { vi } from 'vitest'
 
 /** A fetch that answers every request with this JSON body and status. */
-export function answering(body, status = 200) {
+export function answering(body: unknown, status = 200) {
   return vi.fn(
     async () =>
       new Response(JSON.stringify(body), {
@@ -21,9 +21,9 @@ export function failing() {
 /** A fetch that never answers, and gives up only when its request is aborted. */
 export function neverAnswering() {
   return vi.fn(
-    (input, init) =>
-      new Promise((_, reject) => {
-        const signal = init?.signal ?? input?.signal
+    (input: RequestInfo | URL, init?: RequestInit) =>
+      new Promise<Response>((_, reject) => {
+        const signal = init?.signal ?? (input instanceof Request ? input.signal : undefined)
         signal?.addEventListener('abort', () => reject(signal.reason))
       }),
   )

@@ -2,6 +2,13 @@
 
 Newest first. See [RULE-0016](../harness/rules/RULE-0016-changelog-format.md).
 
+## 2026-10-18
+
+### Changed
+- [US-0003](../context/stories/US-0003-the-app-is-written-in-typescript-and-still-shows-the-api-status.md): the app is strict TypeScript ([ADR-0005](../context/adr/ADR-0005-write-the-app-in-typescript.md)), with a `typecheck` script, `typescript-eslint`, and a typed `HealthResponse` in `src/types`
+- CI runs `npm run typecheck` after lint
+- `AGENTS.md`: TypeScript, the type-check command, and DTO types in `src/types`
+
 ## 2026-10-16
 
 ### Added
