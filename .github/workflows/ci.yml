@@ -1,4 +1,4 @@
-# The same checks as `make lint-app build-app test-app` in the workspace (RULE-0019).
+# The same checks as `make lint-app typecheck-app build-app test-app` in the workspace (RULE-0019).
 name: ci
 
 on:
@@ -24,5 +24,6 @@ jobs:
       # Format and lint before the build and the tests.
       - run: npm run format:check
       - run: npm run lint
+      - run: npm run typecheck
       - run: npm run build
       - run: npm test --if-present -- --run

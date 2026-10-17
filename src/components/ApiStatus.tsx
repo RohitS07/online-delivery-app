@@ -4,7 +4,9 @@ import { checkApiHealth } from '../services/healthService'
 
 const UNREACHABLE = 'Unable to reach the API'
 
-function unreachable(error) {
+type Status = { kind: 'checking' } | { kind: 'healthy' } | { kind: 'unreachable'; message: string }
+
+function unreachable(error?: unknown): Status {
   const message =
     error instanceof MissingApiUrlError ? `${UNREACHABLE}: ${error.message}` : UNREACHABLE
   return { kind: 'unreachable', message }
@@ -12,13 +14,13 @@ function unreachable(error) {
 
 // Exactly one state at a time, checking, healthy or unreachable: BPM-0001.
 export default function ApiStatus() {
-  const [state, setState] = useState({ kind: 'checking' })
+  const [state, setState] = useState<Status>({ kind: 'checking' })
 
   useEffect(() => {
     let mounted = true
-    const show = (next) => mounted && setState(next)
+    const show = (next: Status) => mounted && setState(next)
     checkApiHealth()
-      .then((health) => show(health?.status === 'healthy' ? { kind: 'healthy' } : unreachable()))
+      .then((health) => show(health.status === 'healthy' ? { kind: 'healthy' } : unreachable()))
       .catch((error) => show(unreachable(error)))
     return () => {
       mounted = false
